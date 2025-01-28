@@ -8,5 +8,6 @@ default = [ ]
 egui = [ "bevy_egui" ]
 
 [dependencies]
-bevy = "0.15.1"
+bevy = { version = "0.15.1" }
+bevy_asset_loader = "0.22"
 bevy_egui = { version = "0.32", optional = true}
