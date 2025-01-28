@@ -1,4 +1,6 @@
 use bevy::prelude::*;
+
+#[cfg(feature = "egui")]
 use bevy_egui::{egui, EguiContexts, EguiPlugin};
 
 fn main() {
@@ -6,7 +8,6 @@ fn main() {
 
     app
         .add_plugins(DefaultPlugins)
-        .add_plugins(EguiPlugin)
         .insert_resource(AmbientLight {
             brightness: 750.0,
             ..default()
@@ -15,6 +16,7 @@ fn main() {
 
     #[cfg(feature = "egui")]
     app
+        .add_plugins(EguiPlugin)
         .add_systems(Update, ui_system);
 
     app
@@ -33,6 +35,7 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     )));
 }
 
+#[cfg(feature = "egui")]
 fn ui_system(mut contexts: EguiContexts) {
     egui::Window::new("Hello").show(contexts.ctx_mut(), |ui| {
         ui.label("world");
