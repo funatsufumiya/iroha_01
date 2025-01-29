@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 use bevy::{gltf::{GltfMesh, GltfNode}, prelude::*};
 
 use bevy_asset_loader::asset_collection::AssetCollection;
@@ -70,7 +68,6 @@ impl Iroha {
     }
 }
 
-// Add this system to spawn the loading text
 fn spawn_loading_text(mut commands: Commands) {
     commands
         .spawn( (
@@ -85,7 +82,6 @@ fn spawn_loading_text(mut commands: Commands) {
         ));
 }
 
-// Add this system to cleanup the loading text
 fn cleanup_loading_text(
     mut commands: Commands,
     loading_text: Query<Entity, With<LoadingText>>,
@@ -162,7 +158,7 @@ fn setup(
         let rand_x = rng.random_range(from..to);
         let rand_y = rng.random_range(from..to);
         let rand_z = rng.random_range(from..to);
-        let mut rotation = Quat::from_euler(EulerRot::XYZ, rand_x, rand_y, rand_z);
+        let rotation = Quat::from_euler(EulerRot::XYZ, rand_x, rand_y, rand_z);
 
         commands.spawn((
             Mesh3d(mesh_handle.clone()),
