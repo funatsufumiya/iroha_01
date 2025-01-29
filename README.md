@@ -23,6 +23,8 @@ $ wasm-bindgen --target web --out-dir . --no-typescript target/wasm32-unknown-un
 
 ## License
 
-Dual-licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) or [Coffeeware License](LICENSE).
+This artwork is dual-licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) or [Coffeeware License](LICENSE).
+
+( Why codes here are open on GitHub, is for readability of the code of the artwork. You can cite or copy some (or more) lines of code as you like, when you create another artwork from my code, without any worry about license. But this exception cannot be applied for cloning or fork. )
 
 Copyright (C) 2025 Fumiya Funatsu
