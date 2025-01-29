@@ -2,6 +2,12 @@
 
 ![screenshot.png](screenshot.png)
 
+## Interactive Demo
+
+https://funatsufumiya.github.io/iroha_01/
+
+(Wait patiently for the first time.)
+
 ## Run (locally)
 
 ```bash
