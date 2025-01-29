@@ -7,7 +7,7 @@ use bevy_asset_loader::asset_collection::AssetCollection;
 #[cfg(feature = "egui")]
 use bevy_egui::{egui, EguiContexts, EguiPlugin};
 use bimap::BiMap;
-use rand::Rng as _;
+use rand::{rngs::StdRng, Rng as _, SeedableRng};
 
 fn main() {
     use bevy_asset_loader::loading_state::{config::ConfigureLoadingState, LoadingState, LoadingStateAppExt};
@@ -108,6 +108,9 @@ fn setup(
 
     let mesh_count = gltf.meshes.len();
 
+    let seed: [u8; 32] = [0; 32];
+    let mut rng = StdRng::from_seed(seed);
+
     for i in 0..mesh_count {
         let node = assets_gltfnodes.get(&gltf.nodes[i]).unwrap();
         let gltfmesh = assets_gltfmeshes.get(&gltf.meshes[i]).unwrap();
@@ -125,9 +128,10 @@ fn setup(
         // random initial rotation by rad from 0 to 2pi
         let from = 0.0 as f32;
         let to = 2.0 * std::f32::consts::PI;
-        let rand_x = rand::rng().random_range(from..to);
-        let rand_y = rand::rng().random_range(from..to);
-        let rand_z = rand::rng().random_range(from..to);
+
+        let rand_x = rng.random_range(from..to);
+        let rand_y = rng.random_range(from..to);
+        let rand_z = rng.random_range(from..to);
         let mut rotation = Quat::from_euler(EulerRot::XYZ, rand_x, rand_y, rand_z);
 
         commands.spawn((
