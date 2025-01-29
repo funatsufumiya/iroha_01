@@ -29,6 +29,8 @@ fn main() {
                 .continue_to_state(AssetLoadingState::Loaded)
                 .load_collection::<GltfAssets>()
         )
+        .add_systems(Startup, spawn_loading_text)
+        .add_systems(OnEnter(AssetLoadingState::Loaded), cleanup_loading_text.before(setup))
         .add_systems(OnEnter(AssetLoadingState::Loaded), setup)
         .add_systems(Update, rotate_mesh)
         ;
@@ -41,6 +43,9 @@ fn main() {
     app
         .run();
 }
+
+#[derive(Component)]
+struct LoadingText;
 
 #[derive(Resource)]
 struct Iroha {
@@ -62,6 +67,31 @@ impl Iroha {
 
     pub fn add_mesh(&mut self, name: &str, mesh: Handle<Mesh>) {
         self.mesh_map.insert(name.to_string(), mesh);
+    }
+}
+
+// Add this system to spawn the loading text
+fn spawn_loading_text(mut commands: Commands) {
+    commands
+        .spawn( (
+            Text::new("loading..."),
+            Node {
+                position_type: PositionType::Relative,
+                top: Val::Percent(50.0),
+                left: Val::Percent(50.0),
+                ..default()
+            },
+            LoadingText,
+        ));
+}
+
+// Add this system to cleanup the loading text
+fn cleanup_loading_text(
+    mut commands: Commands,
+    loading_text: Query<Entity, With<LoadingText>>,
+) {
+    for entity in loading_text.iter() {
+        commands.entity(entity).despawn_recursive();
     }
 }
 
