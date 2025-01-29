@@ -1,4 +1,4 @@
-250129 study "iroha" / bevy 0.15
+study "iroha_01" / bevy 0.15
 
 ![screenshot.png](screenshot.png)
 
