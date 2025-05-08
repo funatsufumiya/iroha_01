@@ -21,6 +21,13 @@ $ cargo build --release --target wasm32-unknown-unknown
 $ wasm-bindgen --target web --out-dir . --no-typescript target/wasm32-unknown-unknown/release/iroha_01.wasm
 ```
 
+## Bevy Versions
+
+| bevy | this code |
+| --- | --- |
+| 0.16 | 0.2 |
+| 0.15 | 0.1 |
+
 ## License
 
 This artwork is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
